@@ -46,11 +46,39 @@ const styles = StyleSheet.create({
     timerContainer : {
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 10,
     },
     timerText : {
         fontSize: 48,
         fontWeight: 'bold',
-        paddingTop: 20,
+        padding: 20,
+        color: colors.grey,
+    },
+
+    // Start/Stop Button
+    buttonContainer : {
+        marginBottom: 20,
+        backgroundColor: colors.grey,
+        borderColor: colors.grey,
+        borderWidth: 1,
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        shadowColor: colors.grey, 
+        shadowOffset: { width: 5, height: 5 }, 
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+        elevation: 5,
+    },
+    buttonText : {
+        fontSize: 20,
+        fontWeight: 600,
+        color: colors.black
+    },
+    pauseBtn : {
+        backgroundColor: colors.primaryBackground,
+    },
+    pauseBtnText : {
         color: colors.grey,
     },
 });
