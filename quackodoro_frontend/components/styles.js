@@ -5,6 +5,7 @@ var {height, width} = Dimensions.get('window');
 
 const colors = {
     primaryBackground: '#1B1833',
+    activeBackground: '#219B9D',
     black: '#000',
     grey: '#F7F7F7',
     yellow: '#FFB22C',
@@ -17,6 +18,9 @@ const styles = StyleSheet.create({
         backgroundColor: colors.primaryBackground,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    activeAppContainer : {
+        backgroundColor: colors.activeBackground,
     },
 
     // Tabs
