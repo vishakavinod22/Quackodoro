@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, Image } from 'react-native';
 import Timer from './Timer'; 
 import styles from './styles';
 import Buttons from './Buttons';
@@ -7,20 +7,22 @@ import Buttons from './Buttons';
 export default function PomodoroTimer(){
   const [selectedTab, setSelectedTab] = useState('Pomodoro');
   const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [isTimerFinished, setIsTimerFinished] = useState(true);
   const [timeLeft, setTimeLeft] = useState(25);
   const [controlBtnText, setControlBtnText] = useState('START');
   const intervalRef = useRef(null);
 
   // Setting minutes in minutes
   const TIMER_VALUES = {
-    'Pomodoro': 25 * 60,
+    'Pomodoro': 45 * 60,
     'Short Break': 0.15 * 60,
-    'Long Break': 15 * 60,
+    'Long Break': 30 * 60,
   };
 
   // Update tab content based on active tab
   useEffect(() => {
     setTimeLeft(TIMER_VALUES[selectedTab]);
+    setIsTimerFinished(true);
     setControlBtnText('START');
   }, [selectedTab]);
 
@@ -32,11 +34,13 @@ export default function PomodoroTimer(){
   // Update timer based on control button
   useEffect(() => {
     const startTimer = () => {
+      setIsTimerFinished(false);
       intervalRef.current = setInterval(() => {
         setTimeLeft(prevTime => {
           if (prevTime <= 1) {
             stopTimer();
             setControlBtnText('START'); // Reset button when time ends
+            setIsTimerFinished(true);
             return TIMER_VALUES[selectedTab]; // Reset time
           }
           return prevTime - 1;
@@ -58,10 +62,26 @@ export default function PomodoroTimer(){
     }
   
     return stopTimer;
-  }, [controlBtnText, selectedTab]); // Added selectedTab to reset correctly
+  }, [controlBtnText, selectedTab]);
+
+  // Get correct duck image based on timer state
+  const getDuckImage = () => {
+    if (!isTimerRunning) return require('../assets/chilling_duck.png');
+
+    switch (selectedTab) {
+      case 'Pomodoro':
+        return require('../assets/duck_with_knife.gif');
+      case 'Short Break':
+        return require('../assets/gaming_duck.gif');
+      case 'Long Break':
+        return require('../assets/sleeping_duck.gif');
+      default:
+        return require('../assets/chilling_duck.png');
+    }
+  };
 
   return (
-    <View style={[styles.appContainer, isTimerRunning && styles.activeAppContainer]}>
+    <View style={[styles.appContainer, !isTimerFinished && styles.activeAppContainer]}>
       
       {/* Render the three pomodoro tabs */}
       <View style={styles.tabsContainer}>
@@ -83,6 +103,13 @@ export default function PomodoroTimer(){
       
       {/* Pass button state and function to Buttons */}
       <Buttons btnText={controlBtnText} updateBtnText={updateBtnText} />
+
+      <View>
+        <Image
+          source={getDuckImage()}
+          style={styles.duckContainer}
+        />
+      </View>
     </View>
   );
 };

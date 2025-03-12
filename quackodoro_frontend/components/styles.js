@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
 
     // Start/Stop Button
     buttonContainer : {
-        marginBottom: 20,
+        // marginBottom: -400,
         backgroundColor: colors.grey,
         borderColor: colors.grey,
         borderWidth: 1,
@@ -85,6 +85,13 @@ const styles = StyleSheet.create({
     pauseBtnText : {
         color: colors.grey,
     },
+
+    // Duck
+    duckContainer : {
+        margin: -20,
+        width: 300, 
+        height: 300,
+    }
 });
 
 export default styles;
