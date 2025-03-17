@@ -1,5 +1,5 @@
 import { Dimensions } from "react-native";
-import { StyleSheet } from "react-native";
+import { StyleSheet, PixelRatio } from "react-native";
 
 var {height, width} = Dimensions.get('window');
 
@@ -7,12 +7,21 @@ const colors = {
     primaryBackground: '#1B1833',
     activeBackground: '#219B9D',
     black: '#000',
+    white: '#fff',
     grey: '#F7F7F7',
     yellow: '#FFB22C',
 }
 
+// Adjust font size dynamically
+const dynamicFontSize = (size) => {
+    if (width > 750) {
+        return size * 1.5;
+    }
+    return size;
+};
+
 const styles = StyleSheet.create({
-    // App
+    // Pomodoro Main Container
     appContainer : {
         flex: 1,
         backgroundColor: colors.primaryBackground,
@@ -23,9 +32,37 @@ const styles = StyleSheet.create({
         backgroundColor: colors.activeBackground,
     },
 
+    // Tops Buttons
+    topButtonsContainer: {
+        flexDirection: 'row',  
+        justifyContent: 'space-between', 
+        alignItems: 'center',
+        width: '100%',  
+        maxWidth: 750,
+        paddingTop: 20,
+        marginTop: height * 0.10,
+    },
+    
+    // Reset Button
+    resetBtnContainer: {
+        // backgroundColor: colors.primaryBackground,
+        paddingHorizontal: 20,
+    },
+    
+    // Settings Button
+    settingsBtnContainer: {
+        // backgroundColor: colors.primaryBackground,
+        paddingHorizontal: 20,
+    },    
+
     // Tabs
     tabsContainer: {
         flexDirection: 'row',
+        justifyContent: 'space-between', 
+        alignItems: 'center',
+        width: '100%',  
+        maxWidth: 750,
+        marginTop: 50,
         marginBottom: 20,
     },
     tab: {
@@ -36,7 +73,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     tabText: {
-        fontSize: 16,
+        fontSize: dynamicFontSize(16),
         color: colors.grey
     },
     activeTab: {

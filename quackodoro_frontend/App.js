@@ -5,6 +5,6 @@ import styles from "./components/styles";
 export default function App(){
 
   return (
-      <PomodoroTimer />
+       <PomodoroTimer />
   );
 }

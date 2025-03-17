@@ -3,6 +3,7 @@ import { View, Text, Pressable, Image } from 'react-native';
 import Timer from './Timer'; 
 import styles from './styles';
 import Buttons from './Buttons';
+import TopButtons from './TopButtons';
 
 export default function PomodoroTimer(){
   const [selectedTab, setSelectedTab] = useState('Pomodoro');
@@ -82,6 +83,9 @@ export default function PomodoroTimer(){
 
   return (
     <View style={[styles.appContainer, !isTimerFinished && styles.activeAppContainer]}>
+      
+      {/* Reset */}
+      <TopButtons />
       
       {/* Render the three pomodoro tabs */}
       <View style={styles.tabsContainer}>
