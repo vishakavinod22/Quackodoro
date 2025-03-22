@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, Pressable, Image } from 'react-native';
+import { View, Text, Pressable} from 'react-native';
+import { Image } from 'expo-image';
 import Timer from './Timer'; 
 import styles from './styles';
 import Buttons from './Buttons';
