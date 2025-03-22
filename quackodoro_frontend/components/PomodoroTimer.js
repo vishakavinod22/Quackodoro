@@ -21,6 +21,21 @@ export default function PomodoroTimer(){
     'Long Break': 30 * 60,
   };
 
+  // Handling the reset button
+  const handleReset = () => {
+    console.log("Reset button pressed");
+
+    // Stop the timer
+    clearInterval(intervalRef.current);
+    intervalRef.current = null;
+
+    // Reset states
+    setTimeLeft(TIMER_VALUES[selectedTab]);
+    setControlBtnText('START');
+    setIsTimerRunning(false);
+    setIsTimerFinished(true); 
+  };
+
   // Update tab content based on active tab
   useEffect(() => {
     setTimeLeft(TIMER_VALUES[selectedTab]);
@@ -86,7 +101,7 @@ export default function PomodoroTimer(){
     <View style={[styles.appContainer, !isTimerFinished && styles.activeAppContainer]}>
       
       {/* Reset */}
-      <TopButtons />
+      <TopButtons onReset={handleReset}/>
       
       {/* Render the three pomodoro tabs */}
       <View style={styles.tabsContainer}>
