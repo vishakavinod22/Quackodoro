@@ -12,6 +12,7 @@ export default function PomodoroTimer(){
   const [isTimerFinished, setIsTimerFinished] = useState(true);
   const [timeLeft, setTimeLeft] = useState(25);
   const [controlBtnText, setControlBtnText] = useState('START');
+  const [toggleSettings, setToggleSettings] = useState(false);
   const intervalRef = useRef(null);
 
   // Setting minutes in minutes
@@ -21,10 +22,13 @@ export default function PomodoroTimer(){
     'Long Break': 30 * 60,
   };
 
+  // Handling the settings button
+  const handleSettings = () => {
+    setToggleSettings(prevText => !prevText);
+  }
+
   // Handling the reset button
   const handleReset = () => {
-    console.log("Reset button pressed");
-
     // Stop the timer
     clearInterval(intervalRef.current);
     intervalRef.current = null;
@@ -101,7 +105,7 @@ export default function PomodoroTimer(){
     <View style={[styles.appContainer, !isTimerFinished && styles.activeAppContainer]}>
       
       {/* Reset */}
-      <TopButtons onReset={handleReset}/>
+      <TopButtons onReset={handleReset} onSettings={handleSettings} toggleSettings={toggleSettings}/>
       
       {/* Render the three pomodoro tabs */}
       <View style={styles.tabsContainer}>
@@ -120,9 +124,6 @@ export default function PomodoroTimer(){
 
       {/* Render the content of the active tab */}
       <Timer timeLeft={timeLeft} />
-      
-      {/* Pass button state and function to Buttons */}
-      <Buttons btnText={controlBtnText} updateBtnText={updateBtnText} />
 
       <View>
         <Image
@@ -130,6 +131,9 @@ export default function PomodoroTimer(){
           style={styles.duckContainer}
         />
       </View>
+      
+      {/* Pass button state and function to Buttons */}
+      <Buttons btnText={controlBtnText} updateBtnText={updateBtnText} />
     </View>
   );
 };

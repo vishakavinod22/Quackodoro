@@ -37,43 +37,56 @@ const styles = StyleSheet.create({
         flexDirection: 'row',  
         justifyContent: 'space-between', 
         alignItems: 'center',
-        width: '100%',  
-        maxWidth: 750,
-        paddingTop: 20,
-        marginTop: height * 0.10,
+        width: width > 750 ? '95%' : '100%', 
+        position: 'absolute',
+        top: width > 750 ? height * 0.05 : height * 0.10,
     },
-    
-    // Reset Button
-    resetBtnContainer: {
-        // backgroundColor: colors.primaryBackground,
+
+    topBtnContainerItem: {
         paddingHorizontal: 20,
     },
-    
-    // Settings Button
-    settingsBtnContainer: {
-        // backgroundColor: colors.primaryBackground,
-        paddingHorizontal: 20,
-    },    
+
+    // Settings Modal
+    modalContainer: {
+        backgroundColor: colors.primaryBackground,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    modalView: {
+        width: '90%',
+        height: '90%',
+        backgroundColor: colors.white,
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: colors.grey,
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
 
     // Tabs
     tabsContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between', 
+        justifyContent: 'space-around', 
         alignItems: 'center',
-        width: '100%',  
-        maxWidth: 750,
+        width: '100%', 
         marginTop: 50,
-        marginBottom: 20,
+        marginBottom: 40,
     },
     tab: {
         padding: 12,
-        marginHorizontal: 10,
         borderColor: colors.grey,
         borderWidth: 1,
         borderRadius: 10,
     },
     tabText: {
-        fontSize: dynamicFontSize(16),
+        fontSize: dynamicFontSize(20),
         color: colors.grey
     },
     activeTab: {
@@ -87,24 +100,29 @@ const styles = StyleSheet.create({
     timerContainer : {
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 10,
     },
     timerText : {
-        fontSize: 48,
+        fontSize: dynamicFontSize(48),
         fontWeight: 'bold',
-        padding: 20,
+        paddingTop: 20,
         color: colors.grey,
+    },
+
+    // Duck
+    duckContainer : {
+        margin: -40,
+        width: width > 750 ? 500 : 300, 
+        height: width > 750 ? 500 : 300, 
     },
 
     // Start/Stop Button
     buttonContainer : {
-        // marginBottom: -400,
         backgroundColor: colors.grey,
         borderColor: colors.grey,
         borderWidth: 1,
         borderRadius: 10,
         paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingHorizontal: 30,
         shadowColor: colors.grey, 
         shadowOffset: { width: 5, height: 5 }, 
         shadowOpacity: 0.3,
@@ -112,7 +130,7 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     buttonText : {
-        fontSize: 20,
+        fontSize: dynamicFontSize(22),
         fontWeight: 600,
         color: colors.black
     },
@@ -122,13 +140,6 @@ const styles = StyleSheet.create({
     pauseBtnText : {
         color: colors.grey,
     },
-
-    // Duck
-    duckContainer : {
-        margin: -20,
-        width: 300, 
-        height: 300,
-    }
 });
 
 export default styles;
