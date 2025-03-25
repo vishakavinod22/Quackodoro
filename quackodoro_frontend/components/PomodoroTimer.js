@@ -95,7 +95,7 @@ export default function PomodoroTimer(){
       case 'Short Break':
         return require('../assets/gaming_duck.gif');
       case 'Long Break':
-        return require('../assets/sleeping_duck.gif');
+        return require('../assets/sleepingDuck.gif');
       default:
         return require('../assets/chilling_duck.png');
     }
