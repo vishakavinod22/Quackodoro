@@ -24,7 +24,12 @@ export default function Settings({ onSave }) {
                         placeholder={String(pomodoroTime)}
                         onChangeText={(text) => {
                             if (/^\d*$/.test(text)) { 
-                                setPomodoroTime(Number(text));
+                                const num = Number(text);
+                                if (num > 99) {
+                                    alert("Maximum allowed time is 99 hours.");
+                                } else {
+                                    setPomodoroTime(num);
+                                }
                             } else {
                                 alert("Invalid input! Please enter numbers only.");
                                 setPomodoroTime(String(pomodoroTime));
@@ -42,7 +47,12 @@ export default function Settings({ onSave }) {
                         placeholder={String(shortBreakTime)}
                         onChangeText={(text) => {
                             if (/^\d*$/.test(text)) { 
-                                setShortBreakTime(Number(text));
+                                const num = Number(text);
+                                if (num > 99) {
+                                    alert("Maximum allowed time is 99 hours.");
+                                } else {
+                                    setShortBreakTime(num);
+                                }
                             } else {
                                 alert("Invalid input! Please enter numbers only.");
                                 setShortBreakTime(String(shortBreakTime));
@@ -60,7 +70,12 @@ export default function Settings({ onSave }) {
                         placeholder={String(longBreakTime)}
                         onChangeText={(text) => {
                             if (/^\d*$/.test(text)) { 
-                                setLongBreakTime(Number(text));
+                                const num = Number(text);
+                                if (num > 99) {
+                                    alert("Maximum allowed time is 99 hours.");
+                                } else {
+                                    setLongBreakTime(num);
+                                }
                             } else {
                                 alert("Invalid input! Please enter numbers only.");
                                 setLongBreakTime(String(longBreakTime));

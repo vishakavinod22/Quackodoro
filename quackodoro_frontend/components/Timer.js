@@ -10,7 +10,7 @@ const formatTime = (timeLeft) => {
 export default function Timer({timeLeft}){
     return(
         <View style={styles.timerContainer}>
-            <Text style={styles.timerText}> {formatTime(timeLeft * 60)} </Text>
+            <Text style={styles.timerText}> {formatTime(timeLeft)} </Text>
         </View>
     );
 }

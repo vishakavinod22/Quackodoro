@@ -10,9 +10,9 @@ import TIMER_VALUES from './TimerValue';
 export default function PomodoroTimer(){
 
   const [timerValues, setTimerValues] = useState({
-    'Pomodoro': TIMER_VALUES['Pomodoro'],
-    'Short Break': TIMER_VALUES['Short Break'],
-    'Long Break': TIMER_VALUES['Long Break'],
+    'Pomodoro': TIMER_VALUES['Pomodoro'] * 60,
+    'Short Break': TIMER_VALUES['Short Break'] * 60,
+    'Long Break': TIMER_VALUES['Long Break'] * 60,
   });
 
   const [selectedTab, setSelectedTab] = useState('Pomodoro');
@@ -43,9 +43,9 @@ export default function PomodoroTimer(){
 
   const handleSave = (newTimes) => {
     const updatedTimes = {
-      'Pomodoro': newTimes.pomodoroTime || TIMER_VALUES['Pomodoro'],
-      'Short Break': newTimes.shortBreakTime || TIMER_VALUES['Short Break'],
-      'Long Break': newTimes.longBreakTime || TIMER_VALUES['Long Break'],
+      'Pomodoro': newTimes.pomodoroTime * 60 || TIMER_VALUES['Pomodoro'] * 60,
+      'Short Break': newTimes.shortBreakTime * 60 || TIMER_VALUES['Short Break'] * 60,
+      'Long Break': newTimes.longBreakTime * 60 || TIMER_VALUES['Long Break'] * 60,
     };
 
     setTimerValues(updatedTimes);
