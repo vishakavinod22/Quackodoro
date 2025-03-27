@@ -1,10 +1,10 @@
-import { View, Text } from "react-native";
-import PomodoroTimer from "./components/PomodoroTimer"
-import styles from "./components/styles";
+import { ScrollView } from 'react-native';
+import PomodoroTimer from './components/PomodoroTimer';
 
-export default function App(){
-
+export default function App() {
   return (
-       <PomodoroTimer />
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <PomodoroTimer />
+    </ScrollView>
   );
 }

@@ -5,8 +5,16 @@ import Timer from './Timer';
 import styles from './styles';
 import Buttons from './Buttons';
 import TopButtons from './TopButtons';
+import TIMER_VALUES from './TimerValue';
 
 export default function PomodoroTimer(){
+
+  const [timerValues, setTimerValues] = useState({
+    'Pomodoro': TIMER_VALUES['Pomodoro'],
+    'Short Break': TIMER_VALUES['Short Break'],
+    'Long Break': TIMER_VALUES['Long Break'],
+  });
+
   const [selectedTab, setSelectedTab] = useState('Pomodoro');
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [isTimerFinished, setIsTimerFinished] = useState(true);
@@ -14,13 +22,6 @@ export default function PomodoroTimer(){
   const [controlBtnText, setControlBtnText] = useState('START');
   const [toggleSettings, setToggleSettings] = useState(false);
   const intervalRef = useRef(null);
-
-  // Setting minutes in minutes
-  const TIMER_VALUES = {
-    'Pomodoro': 45 * 60,
-    'Short Break': 0.15 * 60,
-    'Long Break': 30 * 60,
-  };
 
   // Handling the settings button
   const handleSettings = () => {
@@ -34,15 +35,29 @@ export default function PomodoroTimer(){
     intervalRef.current = null;
 
     // Reset states
-    setTimeLeft(TIMER_VALUES[selectedTab]);
+    setTimeLeft(timerValues[selectedTab]);
     setControlBtnText('START');
     setIsTimerRunning(false);
     setIsTimerFinished(true); 
   };
 
+  const handleSave = (newTimes) => {
+    const updatedTimes = {
+      'Pomodoro': newTimes.pomodoroTime || TIMER_VALUES['Pomodoro'],
+      'Short Break': newTimes.shortBreakTime || TIMER_VALUES['Short Break'],
+      'Long Break': newTimes.longBreakTime || TIMER_VALUES['Long Break'],
+    };
+
+    setTimerValues(updatedTimes);
+  
+    // If the currently selected tab is active, update the displayed time
+    setTimeLeft(updatedTimes[selectedTab] || TIMER_VALUES[selectedTab]);
+  };
+  
+
   // Update tab content based on active tab
   useEffect(() => {
-    setTimeLeft(TIMER_VALUES[selectedTab]);
+    setTimeLeft(timerValues[selectedTab]);
     setIsTimerFinished(true);
     setControlBtnText('START');
   }, [selectedTab]);
@@ -62,7 +77,7 @@ export default function PomodoroTimer(){
             stopTimer();
             setControlBtnText('START'); // Reset button when time ends
             setIsTimerFinished(true);
-            return TIMER_VALUES[selectedTab]; // Reset time
+            return timerValues[selectedTab]; // Reset time
           }
           return prevTime - 1;
         });
@@ -105,7 +120,7 @@ export default function PomodoroTimer(){
     <View style={[styles.appContainer, !isTimerFinished && styles.activeAppContainer]}>
       
       {/* Reset */}
-      <TopButtons onReset={handleReset} onSettings={handleSettings} toggleSettings={toggleSettings}/>
+      <TopButtons onReset={handleReset} onSettings={handleSettings} toggleSettings={toggleSettings} onSave={handleSave}/>
       
       {/* Render the three pomodoro tabs */}
       <View style={styles.tabsContainer}>
@@ -133,7 +148,7 @@ export default function PomodoroTimer(){
       </View>
       
       {/* Pass button state and function to Buttons */}
-      <Buttons btnText={controlBtnText} updateBtnText={updateBtnText} />
+      <Buttons btnText={controlBtnText} updateBtnText={updateBtnText}/>
     </View>
   );
 };

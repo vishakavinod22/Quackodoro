@@ -9,13 +9,14 @@ const colors = {
     black: '#000',
     white: '#fff',
     grey: '#F7F7F7',
-    yellow: '#FFB22C',
+    lightLavendar: '#EDE9F6',
+
 }
 
 // Adjust font size dynamically
 const dynamicFontSize = (size) => {
     if (width > 750) {
-        return size * 1.5;
+        return size * 1.2;
     }
     return size;
 };
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: width > 750 ? '95%' : '100%', 
         position: 'absolute',
-        top: width > 750 ? height * 0.05 : height * 0.10,
+        top: width > 750 ? '5%' : '10%',
     },
 
     topBtnContainerItem: {
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     modalView: {
         width: '90%',
         height: '90%',
-        backgroundColor: colors.white,
+        backgroundColor: colors.lightLavendar,
         borderRadius: 20,
         padding: 35,
         alignItems: 'center',
@@ -69,6 +70,54 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
     },
+    modalCloseBtn: {
+        flexDirection: "row", 
+        justifyContent: "flex-end", 
+        width: "100%",
+    },
+    settingsContainer: {
+        paddingTop: width > 750 ? width * 0.1 : width * 0.3,
+        alignItems: "center",
+    },
+    settingsTextContainer: {
+        marginTop: '-20%',
+        marginBottom: 80,
+    },
+    settingsTitle: {
+        fontSize: dynamicFontSize(26),
+        fontWeight: "bold",
+    },
+    inputContainer: {
+        marginBottom: 25,
+        alignItems: "center",
+    },
+    label: {
+        fontSize: dynamicFontSize(20),
+        marginBottom: 10,
+    },
+    input: {
+        width: 100,
+        height: 40,
+        borderRadius: 20,
+        borderWidth: 3,
+        borderColor: "#ccc",
+        textAlign: "center",
+        fontSize: dynamicFontSize(18),
+        backgroundColor: colors.white,
+    },
+    saveButton: {
+        marginTop: 20,
+        backgroundColor: colors.primaryBackground,
+        paddingVertical: 15,
+        paddingHorizontal: 30,
+        borderRadius: 25,
+    },
+    saveButtonText: {
+        color: "white",
+        fontSize: dynamicFontSize(18),
+        fontWeight: "bold",
+    },
+    
 
     // Tabs
     tabsContainer: {
@@ -76,7 +125,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around', 
         alignItems: 'center',
         width: '100%', 
-        marginTop: 50,
+        marginTop: '15%',
         marginBottom: 40,
     },
     tab: {
@@ -128,6 +177,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 2,
         elevation: 5,
+        marginBottom: 50
     },
     buttonText : {
         fontSize: dynamicFontSize(22),
