@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     settingsTextContainer: {
-        marginTop: '-20%',
-        marginBottom: 80,
+        marginTop: '-40%',
+        marginBottom: 30
     },
     settingsTitle: {
         fontSize: dynamicFontSize(26),
@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     input: {
-        width: 100,
-        height: 40,
+        width: 120,
+        height: 60,
         borderRadius: 20,
         borderWidth: 3,
         borderColor: "#ccc",
