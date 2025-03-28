@@ -42,6 +42,8 @@ export default function PomodoroTimer(){
   };
 
   const handleSave = (newTimes) => {
+    handleReset();
+    
     const updatedTimes = {
       'Pomodoro': newTimes.pomodoroTime * 60 || TIMER_VALUES['Pomodoro'] * 60,
       'Short Break': newTimes.shortBreakTime * 60 || TIMER_VALUES['Short Break'] * 60,
@@ -117,7 +119,7 @@ export default function PomodoroTimer(){
   };
 
   return (
-    <View style={[styles.appContainer, !isTimerFinished && styles.activeAppContainer]}>
+    <View style={[styles.appContainer, isTimerRunning && styles.activeAppContainer]}>
       
       {/* Reset */}
       <TopButtons onReset={handleReset} onSettings={handleSettings} toggleSettings={toggleSettings} onSave={handleSave}/>

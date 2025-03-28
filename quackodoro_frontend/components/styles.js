@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     activeAppContainer : {
         backgroundColor: colors.activeBackground,
     },
+    
 
     // Tops Buttons
     topButtonsContainer: {
