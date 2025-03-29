@@ -2,7 +2,7 @@
 Boost your productivity with a Pomodoro timer - and a duck who won’t let you quit! 
 
 <div>
-<img src="quackodoro_frontend/assets/duck_with_knife.gif" width="100" height="100" />   <img src="quackodoro_frontend/assets/gaming_duck.gif" width="100" height="100" />   <img src="quackodoro_frontend/assets/sleepingDuck.gif" width="100" height="100" />
+<img src="quackodoro_frontend/assets/duck_with_knife.gif" width="200" height="200" />   <img src="quackodoro_frontend/assets/gaming_duck.gif" width="200" height="200" />   <img src="quackodoro_frontend/assets/sleepingDuck.gif" width="200" height="200" />
 </div>
 
 ## Objective
